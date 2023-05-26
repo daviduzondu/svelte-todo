@@ -13,7 +13,6 @@
 >
     <div>
         <input
-            class="done"
             type="checkbox"
             name=""
             id=""
