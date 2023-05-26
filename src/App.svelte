@@ -9,7 +9,7 @@
     let allItems = todo.map((x) => x.item);
     if (item.length === 0) {
       return "error";
-    } else if (allItems.includes(item)) {
+    } else if (allItems.includes(item.trimEnd().trimStart())) {
       return "duplicate";
     } else {
       return "success";
@@ -41,7 +41,8 @@
     } else if (response === "duplicate") {
       displayAlert("duplicate");
     } else {
-      todo = [{ item: item, done: false }, ...todo];
+      todo = [{ item: item.trimEnd().trimStart(), done: false }, ...todo];
+      console.log(todo);
       localStorage.setItem("todo", JSON.stringify(todo));
       document.querySelector("input").value = "";
       displayAlert("success");
@@ -78,7 +79,7 @@
     <div class="todo-container">
       {#if todo.length}
         <div class="todo">
-          {#each todo as { item, done } (Math.random() * item.length + 123348574)}
+          {#each todo as { item, done } (item)}
             <Item
               {item}
               {done}
